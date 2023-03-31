@@ -1,13 +1,13 @@
-const express = require('express');
-const logger = require('morgan');
-const port = 3000;
+import express from "express";
+import morgan from "morgan";
+import accountsRouter from "./routes/accounts.js";
+
+const port = 3006;
   
 const app = express();
-app.use(logger('dev'));
-  
-app.get('/', (req, res) => {
-  res.send('<h1>Front Page</h1>');
-});
+app.use(morgan('dev'));
+
+app.use('/accounts',accountsRouter);
   
 app.listen(port, () => {
   console.log(`Started at ${port}`);
