@@ -1,13 +1,17 @@
 import express from "express";
 import morgan from "morgan";
-import accountsRouter from "./routes/accounts.js";
+// eslint-disable-next-line
+import accounts from "./routes/accounts.json" assert {type:"json"};
 
-const port = 3006;
+const port = 3010;
   
 const app = express();
 app.use(morgan('dev'));
 
-app.use('/accounts',accountsRouter);
+app.get('/accounts',(req, res)=>{
+    res.header("Content-Type", "application/json");
+    res.send(JSON.stringify(accounts));
+});
   
 app.listen(port, () => {
   console.log(`Started at ${port}`);
